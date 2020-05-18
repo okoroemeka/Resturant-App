@@ -18,10 +18,24 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-        exclude: /node_modules/,
+        test: /\.scss?$|.css?$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
       },
+
       {
         test: /\.(png|jpg|jpeg|gif|svg|ico)$/,
         use: 'file-loader?name=[name].[ext]',
